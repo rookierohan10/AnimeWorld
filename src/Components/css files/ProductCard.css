@@ -1,0 +1,207 @@
+.product-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 10px;
+    background-color: white;
+}
+
+.product-card .product-image{
+    height: 70%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card .product-image > img {
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card .product-image:hover > img{
+    animation: scale 200ms ease-in-out forwards;
+}
+
+@keyframes scale {
+    to{
+        transform: scale(1.03);
+    }
+}
+
+.product-card .product-name{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 3vmin;
+    font-weight: 600;
+}
+
+.product-card .product-price {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+    font-size: 2.5vmin;
+}
+
+.product-card .product-price .price{
+    color: red;
+}
+
+.product-card .product-price .original_price{
+    text-decoration: line-through;
+    color: gray;
+}
+
+.wishlist-button, .quick-view-button{
+    position: absolute;
+    z-index: 10;
+    width: 20%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(150%);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.wishlist-button{
+    top: 20%;
+    right: 5%;
+}
+
+.quick-view-button{
+    top: 50%;
+    right: 5%;
+}
+
+.wishlist-button svg{
+    width: 50%;
+    height: 50%;
+    fill: black;
+}
+
+.quick-view-button svg{
+    width: 50%;
+    height: 50%;
+    fill: black;
+}
+
+.product-card .product-image:hover .wishlist-button{
+    animation: shift-left 500ms ease-in-out forwards;
+}
+
+.product-card .product-image:hover .quick-view-button{
+    animation: shift-left 500ms ease-in-out forwards;
+}
+
+
+.quick-add-to-cart-button{
+    position: absolute;
+    background: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 15%;
+    font-size: 3vmin;
+    border-radius: 5px;
+    bottom: 5%;
+    transform: translateY(150%);
+    opacity: 0;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+}
+
+.product-card .product-image:hover .quick-add-to-cart-button{
+    animation: shift-up 500ms ease-in-out forwards;
+}
+
+.add-to-wishlist-popup, .quick-view-popup{
+    background-color: black;
+    padding-inline: 5%;
+    position: absolute;
+    color: white;
+    height: 16%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 9;
+    transform: translateX(-150%);
+}
+
+.add-to-wishlist-popup{
+    top: 20%;
+    right: 27%;
+}
+
+.quick-view-popup{
+    top: 50%;
+    right: 27%;
+}
+
+.wishlist-button:hover, .quick-view-button:hover{
+    background-color: black;
+    transition: background-color 300ms ease-in-out;
+}
+
+.wishlist-button:hover svg, .quick-view-button:hover svg{
+    fill: white;
+    transition: fill 300ms ease-in-out;
+}
+
+.wishlist-button:hover + .add-to-wishlist-popup{
+    animation: shift-right 300ms ease-in-out forwards;
+}
+
+.quick-view-button:hover + .quick-view-popup{
+    animation: shift-right 300ms ease-in-out forwards;
+}
+
+.quick-add-to-cart-button:hover{
+    color: white;
+    background-color: black;
+    transition: 200ms ease-in-out;
+}
+
+@keyframes shift-left {
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shift-right {
+    80% {
+        transform: translateX(10%);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shift-up {
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

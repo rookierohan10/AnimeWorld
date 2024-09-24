@@ -1,0 +1,51 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 90%;
+    justify-content: space-between;
+    padding-inline: 5%;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0;
+    background-color: transparent;
+    position: sticky;
+}
+
+.logo-section {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.logo-section .logo {
+    aspect-ratio: 1;
+    color: white;
+    background-color: black;
+    height: 80%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.navbar-links{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 15%;
+}
+
+.navbar-links > a{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

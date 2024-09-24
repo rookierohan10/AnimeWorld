@@ -1,0 +1,44 @@
+.category-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 10px;
+}
+
+.category-card .category-image{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-card .category-image > img {
+    height: 100%;
+    overflow: hidden;
+}
+
+.category-card .category-image:hover {
+    overflow: hidden;
+}
+
+.category-card .category-image:hover > img{
+    animation: scale 200ms ease-in-out forwards;
+}
+
+@keyframes scale {
+    to{
+        transform: scale(1.2);
+    }
+}
+
+.category-card .category-name{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 4vmin;
+    font-weight: 600;
+}
