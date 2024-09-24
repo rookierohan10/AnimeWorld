@@ -14,12 +14,15 @@ const Home = () => {
   const [currentAnime, setCurrentAnime] = useState(null);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [modelOpen, setModelOpen] = useState(true);
+  const [modelOpen, setModelOpen] = useState(false);
+  const [model_key, setModelKey] = useState(null)
+  const [modelContent, setModelContent] = useState(null)
 
   useEffect(() => {
     fetchCategories();
     fetchAnime();
     fetchSpecificProducts();
+    openModal('ATA01');
   }, []);
 
   useEffect(() => {
@@ -62,13 +65,6 @@ const Home = () => {
   }
 
   const fetchSpecificProducts = async () => {
-    // const{data, error} = await supabase
-    //   .from('Products')
-    //   .select(`
-    //     *,
-    //     Anime(anime_id, anime_name)
-    //   `)
-    //   .eq('Anime.anime_name',currentAnime).limit(10)
 
     const { data, error } = await supabase
       .rpc('get_products_by_anime', { name: currentAnime });
@@ -80,7 +76,7 @@ const Home = () => {
     } else {
       setError(null)
       setProducts(data)
-      console.log(data);
+      //console.log(data);
     }
   }
 
@@ -95,6 +91,36 @@ const Home = () => {
     setCurrentAnime(anime_name);
     let dropdown = document.getElementById('dropdown');
     dropdown.classList.remove('active');
+  }
+
+  const fetchProduct = async (key) => {
+    const {data, error} = await supabase
+      .from('Products')
+      .select('*')
+      .eq('id',key)
+      .single();
+
+    if(error){
+      console.log(error)
+      setModelContent(null);
+    } else {
+      console.log(data);
+      setModelContent(data);
+    }
+  }
+
+  const openModal = async(key) => {
+    const data = await fetchProduct(key);
+    if(!data){
+      setModelOpen(true);
+    } else {
+      console.log(error)
+    }
+  }
+
+  const closeModal = (key) => {
+    setModelOpen(false)
+    setModelContent(null)
   }
 
   return (
@@ -143,11 +169,12 @@ const Home = () => {
               images={product['product_image']}
               original_price={product['original_price']}
               discounted_price={product['discounted_price']}
+              onOpenModal={openModal}
             />
           )}
         </div>
       </div>
-      {modelOpen && <ProductPopUp/>}
+      {modelOpen && <ProductPopUp modelOpen={modelOpen} modelContent={modelContent} closeModal={closeModal}/>}
     </section>
   )
 }
