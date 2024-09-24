@@ -3,8 +3,8 @@ import './Home.css'
 import CategoryCards from '../Components/CategoryCards';
 import { supabase } from '../supabase/supabaseClient';
 import ProductCard from '../Components/ProductCard';
-import QuickViewPopup from '../Components/QuickViewPopup';
 import Navbar from '../Components/Navbar';
+import ProductPopUp from '../Components/ProductPopUp';
 
 
 const Home = () => {
@@ -14,6 +14,7 @@ const Home = () => {
   const [currentAnime, setCurrentAnime] = useState(null);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [modelOpen, setModelOpen] = useState(true);
 
   useEffect(() => {
     fetchCategories();
@@ -146,6 +147,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      {modelOpen && <ProductPopUp/>}
     </section>
   )
 }
