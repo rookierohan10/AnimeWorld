@@ -1,23 +1,52 @@
+.ProductPopUpOverlay{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
 .ProductPopUp{
     display: flex;
     position: relative;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 70%;
-    height: 70%;
+    width: 60%;
+    height: 60%;
     background: white;
-    transform: translate(-50%, -50%);
     z-index: 99;
     justify-content: center;
     align-items: flex-start;
+    column-gap: 0.5rem;
+    overflow: hidden;
+    padding-block: 5px;
 }
 
-.cross-mark{
+.cross-mark-container{
     position: absolute;
     top: 1%;
     right: 0%;
-    transform: translate(-100%, -10%);
+    transform: translate(-10%, -10%) rotate(0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: translate rotate 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+
+.cross-mark{
+    color: black;
+}
+
+.cross-mark-container:hover {
+    animation: spin 500ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.cross-mark-container:hover .cross-mark{
+    color: white;
+    transition: color 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .imageContainer{
@@ -96,11 +125,118 @@
     }
 }
 
+@keyframes spin {
+    from{
+        transform: translate(-10%, -10%) rotate(0deg);
+        background-color: white;
+    }
+    to{
+        transform: translate(-10%, -10%) rotate(180deg);
+        background-color: black;
+    }
+}
+
 .infoContainer{
     width: 60%;
     height: 100%;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    row-gap: 1.5rem;
+    overflow-y: auto;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
+.infoContainer::-webkit-scrollbar {
+    width: 2px; /* Set the width of the vertical scrollbar */
+}
+
+.infoContainer::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded edges */
+}
+
+.product-name{
+    font-size: 2rem;
+    width: 100%;
+}
+
+.Price{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.discounted-price{
+    color: red;
+    font-size: 1.2rem;
+}
+
+.original-price{
+    text-decoration: line-through;
+    color: gray;
+    font-size: .8rem;
+}
+
+.sale-tag{
+    padding-inline: .5rem;
+    border-radius: 15rem;
+    background-color: red;
+    align-content: center;
+    color: white;
+    font-size: .7rem;
+    font-weight: 600;
+}
+
+.Add-to-Cart{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.counter{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+    width: 30%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.buttons{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.number{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.Add-to-Cart-Button{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: .5rem;
+    transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.Add-to-Cart-Button:hover {
+    background-color: black;
+    color: white;
 }
