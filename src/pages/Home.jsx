@@ -22,7 +22,6 @@ const Home = () => {
     fetchCategories();
     fetchAnime();
     fetchSpecificProducts();
-    openModal('ATA01');
   }, []);
 
   useEffect(() => {

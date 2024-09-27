@@ -3,19 +3,22 @@ import './css files/ProductPopUp.css'
 import { ChevronLeft, ChevronRight, X, Plus, Minus } from 'lucide-react'
 
 const ProductPopUp = (props) => {
-  const { openModel, modelContent, closeContent } = props
+  const { openModel, modelContent, closeModal } = props
   const [count, setCount] = useState(1)
   const { image1, image2 } = modelContent.product_image
   const [image, setImage] = useState(image1);
 
   const description = modelContent.product_description.substring(0, modelContent.product_description.indexOf('.'))
   console.log(modelContent.product_description)
-  const stock = 15
+  const stock = modelContent.quantity
 
   useEffect(() => {
     setImage(image1);
   }, [image1]);
 
+  useEffect(() => {
+    setCount(1)
+  },[openModel])
 
   const handleClick = () => {
     if (image === image1) {
@@ -39,10 +42,14 @@ const ProductPopUp = (props) => {
     }
   }
 
+  const handleClose = () => {
+    closeModal()
+  }
+
   return (
     <div className='ProductPopUpOverlay'>
       <div className='ProductPopUp'>
-        <div className='cross-mark-container'><X className='cross-mark' /></div>
+        <div className='cross-mark-container' onClick={()=>handleClose()}><X className='cross-mark' /></div>
         <div className='imageContainer'>
           <div className='imageHolder'>
             {image2 && <div className='left-button' onClick={() => handleClick()}> <ChevronLeft color='white' /> </div>}
