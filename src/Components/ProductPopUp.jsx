@@ -10,7 +10,7 @@ const ProductPopUp = (props) => {
 
   const description = modelContent.product_description.substring(0, modelContent.product_description.indexOf('.'))
   console.log(modelContent.product_description)
-  const stock = 0
+  const stock = 15
 
   useEffect(() => {
     setImage(image1);
@@ -18,11 +18,24 @@ const ProductPopUp = (props) => {
 
 
   const handleClick = () => {
-    console.log('clicked')
     if (image === image1) {
       setImage(image2)
     } else {
       setImage(image1)
+    }
+  }
+
+  const handleAmountDecrease = () => {
+    console.log('clicked: decrease')
+    if(count > 1){
+      setCount(count - 1)
+    }
+  }
+
+  const handleAmountIncrease = () => {
+    console.log('clicked: increase')
+    if(count < stock){
+      setCount(count + 1)
     }
   }
 
@@ -55,15 +68,15 @@ const ProductPopUp = (props) => {
           }
           <div className='Add-to-Cart'>
             <div className='counter'>
-              <div className='buttons' >
+              <button className='buttons' onClick={()=>handleAmountDecrease()}>
                 <Minus size={18} ></Minus>
-              </div>
+              </button>
               <div className='buttons number' >{count}</div>
-              <div className='buttons' >
+              <button className='buttons' onClick={()=>handleAmountIncrease()}>
                 <Plus size={18} ></Plus>
-              </div>
+              </button>
             </div>
-            <div className='Add-to-Cart-Button'>Add to Cart</div>
+            <button className='Add-to-Cart-Button'>Add to Cart</button>
           </div>
         </div>
       </div>

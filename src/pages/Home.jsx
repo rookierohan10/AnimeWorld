@@ -35,6 +35,14 @@ const Home = () => {
     fetchSpecificProducts();
   }, [currentAnime])
 
+  useEffect(()=>{
+    if(modelOpen){
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  },[modelOpen])
+
   const fetchCategories = async () => {
     const { data: categories, error } = await supabase
       .from('Category').select().order('category_name').limit(10);
