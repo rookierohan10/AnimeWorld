@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../Components/Navbar'
 
 const SpecificItem = () => {
   return (
-    <div>SpecificItem</div>
+    <section className='Specific-Product-Page'>
+      <Navbar />
+    </section>
   )
 }
 

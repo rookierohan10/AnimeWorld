@@ -1,5 +1,6 @@
 import React from 'react'
 import './css files/Navbar.css'
+import { CircleUserRound, Heart, ShoppingCart } from 'lucide-react'
 
 const Navbar = () => {
   return (
@@ -9,9 +10,9 @@ const Navbar = () => {
         <div className='name'>Animeworld</div>
       </div>
       <div className='navbar-links'>
-        <a>Home</a>
-        <a>Items</a>
-        <a>Profile</a>
+        <div><Heart /></div>
+        <div><ShoppingCart /></div>
+        <div><CircleUserRound /></div>
       </div>
       <div></div>
     </nav>

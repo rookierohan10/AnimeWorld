@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './css files/ProductPopUp.css'
 import { ChevronLeft, ChevronRight, X, Plus, Minus } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const ProductPopUp = (props) => {
+  const navigate = useNavigate();
+  
   const { openModel, modelContent, closeModal } = props
   const [count, setCount] = useState(1)
   const { image1, image2 } = modelContent.product_image
@@ -46,6 +49,11 @@ const ProductPopUp = (props) => {
     closeModal()
   }
 
+  const handleProductNavigate = () => {
+    handleClose()
+    navigate('/product?id='+modelContent.id)
+  }
+
   return (
     <div className='ProductPopUpOverlay'>
       <div className='ProductPopUp'>
@@ -64,7 +72,7 @@ const ProductPopUp = (props) => {
             <div className='original-price'>{modelContent.original_price}.00</div>
             <div className='sale-tag'>SALE</div>
           </div>
-          <div className='product-description'>{description}...<span style={{ color: "blue", textDecoration: "underline" }}>View details</span></div>
+          <div className='product-description'>{description}...<span style={{ color: "blue", textDecoration: "underline" }} onClick={()=>handleProductNavigate()}>View details</span></div>
           {stock === 0 ? <div style={{ color: "red" }}>Out of Stock</div> :
             <div
               style={{
