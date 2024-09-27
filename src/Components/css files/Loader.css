@@ -1,0 +1,47 @@
+.loader-background{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-background > .logo{
+    height: 50px;
+    aspect-ratio: 1;
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    font-weight: 900;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: keep-spinning 2s linear infinite forwards;
+}
+
+@keyframes keep-spinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1440deg) scale(1.5) ; /* 4 full rotations */
+    }
+
+    50%{
+        transform: rotate(1890deg) ;
+    }
+
+    75%{
+        transform: rotate(2340deg) ;
+    }
+
+    90% {
+        transform: rotate(2520deg);
+    }
+
+    100%{
+        transform: rotate(2520deg);
+    }
+}
+
