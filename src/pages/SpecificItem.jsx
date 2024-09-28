@@ -4,12 +4,13 @@ import './css files/SpecificItem.css'
 import Loader from '../Components/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { supabase } from '../supabase/supabaseClient';
-import { Gift, RotateCw, Truck } from 'lucide-react';
+import { Gift, Minus, Plus, RotateCw, Truck } from 'lucide-react';
 
 const SpecificItem = () => {
   const [productInfo, setProductInfo] = useState(false);
   const [image, setImage] = useState(null)
   const [images, setImages] = useState(null)
+  const [count, setCount] = useState(1)
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
@@ -64,13 +65,17 @@ const SpecificItem = () => {
                 </div>
                 <div className='buying-options'>
                   <div className='cart-options'>
-                    <div className='quantity'></div>
+                    <div className='quantity'>
+                      <div className='quantity-buttons'><Plus /></div>
+                      <div className='quantity-buttons' style={{height: "100%"}}>{count}</div>
+                      <div className='quantity-buttons'><Minus /></div>
+                    </div>
                     <div className='add-to-cart'>Add to Cart</div>
                   </div>
                   <div className='buy-now'>Buy Now</div>
                 </div>
                 <div className='add'>
-                  <div className='pointers'><RotateCw />Easy Returns and Exchanges.</div>
+                  <div className='pointers'><RotateCw className='rotate'/>Easy Returns and Exchanges.</div>
                   <div className='pointers'><Gift />Free Shipping above ₹399.00</div>
                   <div className='pointers'><Truck />Fast shipping across India.</div>
                 </div>
