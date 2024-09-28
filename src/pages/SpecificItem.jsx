@@ -55,12 +55,19 @@ const SpecificItem = () => {
               <div className='product-showcase'>
                 <div className='product-name'>{productInfo.product_name}</div>
                 <div className='price-info'>
-                  <div>
-                    <div className='discounted-price'>{productInfo.discounted_price}</div>
-                    <div className='original-price'>{productInfo.original_price}</div>
-                    <div className='sale-tag'>SALE</div>
+                  <div className='price-details' style={{display: "flex", alignItems: "center", columnGap: "2%"}}>
+                    <div className='discounted-price'>₹ {productInfo.discounted_price}.00</div>
+                    <div className='original-price'>{productInfo.original_price}.00</div>
+                    <div className='sale-tag' style={{height: "100%"}}>SALE</div>
                   </div>
                   <div className='tax-tag'>Tax Included</div>
+                </div>
+                <div className='buying-options'>
+                  <div className='cart-options'>
+                    <div className='quantity'></div>
+                    <div className='add-to-cart'>Add to Cart</div>
+                  </div>
+                  <div className='buy-now'>Buy Now</div>
                 </div>
                 <div className='add'>
                   <div className='pointers'><RotateCw />Easy Returns and Exchanges.</div>
@@ -73,7 +80,6 @@ const SpecificItem = () => {
 
             </div>
           </>
-
         }
       </section>
     </section>
