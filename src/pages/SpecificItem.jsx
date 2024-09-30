@@ -12,7 +12,7 @@ const SpecificItem = () => {
   const [image, setImage] = useState(null)
   const [images, setImages] = useState(null)
   const [count, setCount] = useState(1)
-  const [share, setShare] = useState(true) 
+  const [share, setShare] = useState(false) 
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
@@ -36,9 +36,25 @@ const SpecificItem = () => {
     setImage(pic)
   }
 
+  const handleOpenModal = () => {
+    setShare(true)
+  }
+
+  const handleCloseModal = () => {
+    setShare(false)
+  }
+
   useEffect(() => {
     fetchSpecific()
   }, [id])
+
+  useEffect(()=>{
+    if(share){
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  },[share])
 
   return (
     <section className='Specific-Product-Page'>
@@ -83,7 +99,7 @@ const SpecificItem = () => {
                 </div>
                 <div className='querying-options'>
                   <div className='option'><MessageCircleQuestion /> Ask a question</div>
-                  <div className='option'><Share2 /> Share</div>
+                  <div className='option' onClick={()=>handleOpenModal()}><Share2 /> Share</div>
                 </div>
                 <div className='offers'>
                   <div className='offer-template'>
@@ -111,7 +127,7 @@ const SpecificItem = () => {
           </>
         }
       </section>
-      {share && <SharePopUp /> }
+      {share && <SharePopUp closeModal={handleCloseModal}/> }
     </section>
   )
 }

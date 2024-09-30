@@ -2,10 +2,36 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cross-mark-container {
+    position: absolute;
+    top: 2%;
+    right: 0%;
+    transform: translate(-10%, -10%) rotate(0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: translate rotate 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+
+.cross-mark {
+    color: black;
+}
+
+.cross-mark-container:hover {
+    animation: spin 500ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.cross-mark-container:hover .cross-mark {
+    color: white;
+    transition: color 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .share-div{
@@ -13,5 +39,114 @@
     aspect-ratio: 16/9;
     background-color: white;
     padding: 1rem;
+    position: relative;
     box-sizing: border-box;
+}
+
+.copy-link{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 1rem;
+    padding-inline: 2px;
+    box-sizing: border-box;
+}
+
+.link{
+    width: 100%;
+    border-radius: 2px;
+    background-color: #ECECEC;
+    text-wrap: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-block: 3px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.link-holder{
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-inline: 5px;
+}
+
+.copy-button-holder{
+    width: 10%;
+    height: auto;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.copy-image{
+    width: 100%;
+    height: 100%;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.other-sharing{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.share-text{
+    width: 100%;
+    height: 30%;
+}
+
+.share-external{
+    height: 70%;
+    aspect-ratio: 1;
+    padding-block: 2px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.icon-div{
+    height: 80%;
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+
+.icon-holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: whitesmoke;
+}
+
+.icon-holder > svg{
+    width: 50%;
+    height: 50%;
+    fill: black;
+    transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.icon-holder:hover > svg{
+    fill: gray;
 }
