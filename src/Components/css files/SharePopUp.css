@@ -1,0 +1,17 @@
+.Share-popup{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-div{
+    width: 400px;
+    aspect-ratio: 16/9;
+    background-color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+}
