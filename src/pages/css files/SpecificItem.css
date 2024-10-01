@@ -49,6 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .image-showcase > .image-options > div > img{
@@ -61,12 +62,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     background-color: beige;
 }
 
 .image-showcase > .image-main > img{
     width: 100%;
     height: 100%;
+}
+
+.image-showcase > .image-main .magnifying-icon-holder{
+    position: absolute;
+    height: max-content;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: lightgray;
+    z-index: 1;
+    top: 0%;
+    right: 0%;
+    transform: translate(-100%, 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.image-showcase > .image-main .magnifying-icon-holder .magnifying-icon{
+    color: black;
+    transition: all 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.image-showcase > .image-main .magnifying-icon-holder .magnifying-icon:hover{
+    color: gray;
 }
 
 .product-showcase{
@@ -323,6 +352,28 @@
     grid-auto-rows: 400px;
 }
 
+.Also-like-section .shop-for-more{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Also-like-section .shop-for-more .button{
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 500ms cubic-bezier(0.23, 1, 0.320, 1)
+}
+
+.Also-like-section .shop-for-more .button:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
 
 @keyframes spinning {
     10%{

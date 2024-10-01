@@ -4,9 +4,10 @@ import './css files/SpecificItem.css'
 import Loader from '../Components/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { supabase } from '../supabase/supabaseClient';
-import { BadgePercent, Gift, MessageCircleQuestion, Minus, Plus, RotateCw, Share2, Truck } from 'lucide-react';
+import { BadgePercent, Gift, MessageCircleQuestion, Minus, Plus, RotateCw, Search, Share2, Truck } from 'lucide-react';
 import SharePopUp from '../Components/SharePopUp';
 import ProductCard from '../Components/ProductCard';
+import ProductPopUp from '../Components/ProductPopUp';
 
 const SpecificItem = () => {
   const [productInfo, setProductInfo] = useState(false);
@@ -19,6 +20,8 @@ const SpecificItem = () => {
   const [share, setShare] = useState(false)
   const [content, setContent] = useState([])
   const [description, setDescription] = useState(true)
+  const [modelOpen, setModelOpen] = useState(false)
+  const [modelContent, setModelContent] = useState(null)
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
@@ -109,6 +112,36 @@ const SpecificItem = () => {
     }
   }
 
+  const fetchProduct = async (key) => {
+    const {data, error} = await supabase
+      .from('Products')
+      .select('*')
+      .eq('id',key)
+      .single();
+
+    if(error){
+      console.log(error)
+      setModelContent(null);
+    } else {
+      console.log(data);
+      setModelContent(data);
+    }
+  }
+
+  const openModal = async(key) => {
+    const data = await fetchProduct(key);
+    if(!data){
+      setModelOpen(true);
+    } else {
+      console.log('error')
+    }
+  }
+
+  const closeModal = () => {
+    setModelOpen(false)
+    setModelContent(null)
+  }
+
   useEffect(() => {
     fetchSpecific()
   }, [id])
@@ -118,12 +151,12 @@ const SpecificItem = () => {
   }, [relatedProducts])
 
   useEffect(() => {
-    if (share) {
+    if (share || modelOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
     }
-  }, [share])
+  }, [share, modelOpen])
 
   return (
     <section className='Specific-Product-Page'>
@@ -137,6 +170,7 @@ const SpecificItem = () => {
                   {images.map(pic => <div onClick={() => handleImageChange(pic)}><img src={pic} /></div>)}
                 </div>
                 <div className='image-main'>
+                  <div className='magnifying-icon-holder'><Search className='magnifying-icon'/></div>
                   <img src={image}></img>
                 </div>
               </div>
@@ -217,9 +251,12 @@ const SpecificItem = () => {
                       images={product['product_image']}
                       original_price={product['original_price']}
                       discounted_price={product['discounted_price']}
-                    // onOpenModal={openModal}
+                      onOpenModal={openModal}
                     />
                   )}
+                </div>
+                <div className="shop-for-more">
+                  <div className="button">Shop for More</div>
                 </div>
               </div>
             )}
@@ -235,9 +272,12 @@ const SpecificItem = () => {
                       images={product['product_image']}
                       original_price={product['original_price']}
                       discounted_price={product['discounted_price']}
-                    // onOpenModal={openModal}
+                      onOpenModal={openModal}
                     />
                   )}
+                </div>
+                <div className="shop-for-more">
+                  <div className="button">Shop for More</div>
                 </div>
               </div>
             )}
@@ -245,6 +285,7 @@ const SpecificItem = () => {
         }
       </section>
       {share && <SharePopUp closeModal={handleCloseModal} />}
+      {modelOpen && <ProductPopUp modelOpen={modelOpen} modelContent={modelContent} closeModal={closeModal}/>}
     </section>
   )
 }
