@@ -1,0 +1,49 @@
+.imageViewer{
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.imageViewer > .image-holder > .productImage{
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+.controlButtonDiv{
+    position: absolute;
+    display: flex;
+    width: 180px;
+    aspect-ratio: 3 / 1;
+    bottom: 0%;
+    transform: translate(0, -10%);
+}
+
+.controlButtons{
+    background-color: floralwhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.controlButtons:hover{
+    background-color: black;
+    color: white;
+}

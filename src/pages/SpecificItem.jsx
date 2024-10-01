@@ -8,6 +8,7 @@ import { BadgePercent, Gift, MessageCircleQuestion, Minus, Plus, RotateCw, Searc
 import SharePopUp from '../Components/SharePopUp';
 import ProductCard from '../Components/ProductCard';
 import ProductPopUp from '../Components/ProductPopUp';
+import ImageViewer from '../Components/ImageViewer';
 
 const SpecificItem = () => {
   const [productInfo, setProductInfo] = useState(false);
@@ -22,6 +23,7 @@ const SpecificItem = () => {
   const [description, setDescription] = useState(true)
   const [modelOpen, setModelOpen] = useState(false)
   const [modelContent, setModelContent] = useState(null)
+  const [imageViewer, setImageViewer] = useState(false)
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
@@ -142,6 +144,14 @@ const SpecificItem = () => {
     setModelContent(null)
   }
 
+  const openImageViewer = () => {
+    setImageViewer(true)
+  }
+
+  const closeImageViewer = () => {
+    setImageViewer(false)
+  }
+
   useEffect(() => {
     fetchSpecific()
   }, [id])
@@ -170,7 +180,7 @@ const SpecificItem = () => {
                   {images.map(pic => <div onClick={() => handleImageChange(pic)}><img src={pic} /></div>)}
                 </div>
                 <div className='image-main'>
-                  <div className='magnifying-icon-holder'><Search className='magnifying-icon'/></div>
+                  <div className='magnifying-icon-holder' onClick={()=>openImageViewer()}><Search className='magnifying-icon'/></div>
                   <img src={image}></img>
                 </div>
               </div>
@@ -286,6 +296,7 @@ const SpecificItem = () => {
       </section>
       {share && <SharePopUp closeModal={handleCloseModal} />}
       {modelOpen && <ProductPopUp modelOpen={modelOpen} modelContent={modelContent} closeModal={closeModal}/>}
+      {imageViewer && <ImageViewer images={images} closeImageViewer = {closeImageViewer}/>}
     </section>
   )
 }
