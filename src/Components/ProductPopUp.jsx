@@ -62,7 +62,7 @@ const ProductPopUp = (props) => {
           <div className='imageHolder'>
             {image2 && <div className='left-button' onClick={() => handleClick()}> <ChevronLeft color='white' /> </div>}
             {image2 && <div className='right-button' onClick={() => handleClick()}> <ChevronRight color='white' /> </div>}
-            <img src={image} alt={modelContent.product_name} />
+            <img src={image} alt={modelContent.product_name} onClick = {()=>handleProductNavigate()} />
           </div>
         </div>
         <div className='infoContainer'>
@@ -72,7 +72,7 @@ const ProductPopUp = (props) => {
             <div className='original-price'>{modelContent.original_price}.00</div>
             <div className='sale-tag'>SALE</div>
           </div>
-          <div className='product-description'>{description}...<span style={{ color: "blue", textDecoration: "underline" }} onClick={()=>handleProductNavigate()}>View details</span></div>
+          <div className='product-description'>{description}...<span style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }} onClick={()=>handleProductNavigate()}>View details</span></div>
           {stock === 0 ? <div style={{ color: "red" }}>Out of Stock</div> :
             <div
               style={{

@@ -66,6 +66,10 @@
     position: relative;
 }
 
+.imageHolder > img {
+    cursor: pointer;
+}
+
 .left-button {
     position: absolute;
     width: 15%;
