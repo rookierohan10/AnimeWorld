@@ -23,7 +23,7 @@ const Collections = () => {
                 id: category_name,
                 name: category_name,
                 image: category_image,
-                tag: 'category'
+                tag: 'product'
             }))
         }
     }
@@ -40,7 +40,7 @@ const Collections = () => {
                 id: anime_id,
                 name: anime_name,
                 image: anime_image,
-                tag: 'category'
+                tag: 'anime'
             }))
         }
     }
@@ -50,7 +50,9 @@ const Collections = () => {
             const categories = await fetchCategories()
             const anime = await fetchAnime()
 
-            setCategories([...categories, ...anime])
+            const combinedCollections = [...categories, ...anime]
+            combinedCollections.sort((a,b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+            setCategories(combinedCollections)
         }
 
         fetchData()
@@ -77,6 +79,7 @@ const Collections = () => {
                                     id={category.id}
                                     name={category.name}
                                     image={category.image}
+                                    tag={category.tag}
                                 />
                             )}
                         </div>
