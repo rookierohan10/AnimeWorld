@@ -9,7 +9,7 @@ import CategoryCards from '../Components/CategoryCards';
 const Collections = () => {
 
     const [categories, setCategories] = useState([])
-    const [loading, isLoading] = useState(false)
+    const [loading, isLoading] = useState(true)
 
     const fetchCategories = async () => {
         const { data, error } = await supabase
@@ -53,6 +53,7 @@ const Collections = () => {
             const combinedCollections = [...categories, ...anime]
             combinedCollections.sort((a,b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
             setCategories(combinedCollections)
+            isLoading(false)
         }
 
         fetchData()
@@ -61,11 +62,12 @@ const Collections = () => {
     useEffect(() => {
         console.log(categories)
     }, [categories])
+
     return (
         <section className="collections-section">
             <Navbar></Navbar>
             <div className='categories-div'>
-                {!isLoading ?
+                {loading ?
                     <div className='loader-div'>
                         <Loader></Loader>
                     </div>
